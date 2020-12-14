@@ -23,13 +23,12 @@ const StatsScreen = ({navigation}) => {
                             padding: 0,
                             margin: 0,
                             top: 0,
-                            height: PX(100),
+                            height: PX(120),
                             flexDirection: 'row',
                             justifyContent: 'flex-end',
                             alignItems: 'flex-start',
                             flex: 1,
                             borderBottomWidth: 0,
-                            //backgroundColor: '#333',
                         }}
                         leftContainerStyle={{
                             paddingTop: 10,

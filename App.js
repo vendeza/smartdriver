@@ -1,27 +1,13 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import React from 'react';
-//import CustomIcon from './src/styles/CustomIcon';
-
 import {
-    StyleSheet, View,Text
+    StyleSheet, View, Text,
 } from 'react-native';
-
 import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {createStackNavigator,} from '@react-navigation/stack';
-//import {ExitIcons} from './assets/';
+import {createStackNavigator} from '@react-navigation/stack';
 import {create, PREDEF_RES} from 'react-native-pixel-perfect';
 import Icon from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import Image from 'react-native-remote-svg';
-
 import * as Screen from './src/screens';
 
 
@@ -31,35 +17,9 @@ const screenStack = {
     StatsScreen: Screen.StatsScreen,
     OtherScreen: Screen.OtherScreen,
 };
-
-
-import Svg, {G, Path} from 'react-native-svg';
-
-// Each nameValuePair can be:
-// * Name: <Svg />; or
-// * Name: { svg: <Svg />, viewBox: '0 0 50 50' }
-
-const ExitIcons = () => {
-    return (
-        <Svg width="20" height="26" viewBox="0 0 20 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-                d="M19 7V4C19 2.34315 17.6569 1 16 1H4C2.34315 1 1 2.34315 1 4V21V22C1 23.6569 2.34315 25 4 25H16C17.6569 25 19 23.6569 19 22V19"
-                stroke="white" stroke-width="1.5" stroke-linejoin="round"/>
-            <path d="M15.5119 9.74334L19 13.0886L15.5119 16.4338" stroke="white" stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"/>
-            <path d="M18.7505 13.0506H10.1862" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-        </Svg>
-    );
-};
-import MySVGImage from './assets/icons/exit.svg';
-
 const Tab = createBottomTabNavigator();
-
 const perfectSize = create(PREDEF_RES.iphoneX.px);
-
 const HomeStack = createStackNavigator();
-const SettingsStack = createStackNavigator();
 
 function HomeStackScreen() {
     return (
@@ -69,35 +29,45 @@ function HomeStackScreen() {
                 component={screenStack.HomeScreen}
                 options={{
                     headerTitle: (
-                        <View style={{flexDirection:'row',borderBottomWidth:0, paddingTop:PX(76), paddingBottom:PX(0)}}>
-                            <Text style={{flex:1,fontSize:PX(24), fontWeight:"700"}}>{"Kukaldosh Boutique Hotel"}</Text>
-                            <Text style={{flex:1,fontSize:PX(24), fontWeight:"700"}}>{""}</Text>
+                        <View style={{
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            borderBottomWidth: 0,
+                            paddingTop: PX(20),
+                            paddingBottom: PX(0),
+                            paddingRight: 0,
+                        }}>
+                            <Text style={{
+                                width: PX(200),
+                                height:PX(60),
+                                fontSize: PX(24),
+                                fontWeight: '700',
+                            }}>{'Kukaldosh Boutique Hotel'}</Text>
                         </View>
 
                     ),
 
                     headerStyle: {
                         shadowColor: 'transparent',
-                     //   backgroundColor: '#f4511e',
-                        borderColor:"#fff",
-                        borderBottomWidth:0,
-                     // width:PX(200)
-                        height:PX(120),
+                        borderColor: '#fff',
+                        borderBottomWidth: 0,
+                        height: PX(110),
 
                     },
-                    headerTitleAlign:'left',
+                    headerTitleAlign: 'left',
                     headerTintColor: '#fff',
                     headerTitleStyle: {
                         fontWeight: 'bold',
-                        fontSize:PX(24),
-                        color:"black",
-                        borderBottomWidth:0,
+                        fontSize: PX(24),
+                        color: 'black',
+                        borderBottomWidth: 0,
                     },
                 }}
             />
         </HomeStack.Navigator>
     );
 }
+
 const App = () => {
 
     const MyTheme = {
@@ -125,14 +95,13 @@ const App = () => {
                 }}
                 tabBarOptions={{
                     activeTintColor: '#007AFF',
-
+                    tabStyle: {
+                        paddingVertical: 5
+                    },
                     style: {
-                        height: PX(80),
-                        paddingTop:PX(5),
-                        paddingBottom:PX(26),
-                        backgroundColor:"#e9e9e9"
+                        backgroundColor: '#e9e9e9',
 
-                }
+                    },
                 }}
                 screenOptions={({route}) => ({
 
@@ -144,7 +113,7 @@ const App = () => {
                                 ? 'home-filled'
                                 : 'home-filled';
                             return <MaterialIcons name={'home-filled'} size={30}
-                                                  color={focused ? '#007AFF' : '#A1A1A1'} />;
+                                                  color={focused ? '#007AFF' : '#A1A1A1'}/>;
                         } else if (route.name === 'Брони') {
                             iconName = focused ? 'ios-layers' : 'ios-layers';
                         } else if (route.name === 'Статистика') {
@@ -153,7 +122,7 @@ const App = () => {
                             return;
                         }
 
-                       return <Icon name={iconName} size={24}color={focused ? '#007AFF' : '#A1A1A1'}/>;
+                        return <Icon name={iconName} size={24} color={focused ? '#007AFF' : '#A1A1A1'}/>;
                     },
                 })}
             >
@@ -165,63 +134,21 @@ const App = () => {
                 <Tab.Screen
 
                     options={{
-                    tabBarLabel: 'Еще',
-                    tabStyle:{top:0,lineHeight:0,margin:0, bottom:0},
-                    labelStyle:{top:0,lineHeight:0,margin:0,color:"#333"},
+                        tabBarLabel: 'Еще',
+                        tabStyle: {top: 0, lineHeight: 0, margin: 0, bottom: 0},
+                        labelStyle: {top: 0, lineHeight: 0, margin: 0, color: '#333'},
 
-                    safeAreaInsets:{top:0,bottom:0},
-                    tabBarIcon: ({color, size}) => (
-                        <Icon name="grid" color={color} size={size}/>
-                    ),
-                }}
-                            name="Еще" component={screenStack.OtherScreen}/>
+                        safeAreaInsets: {top: 0, bottom: 0},
+                        tabBarIcon: ({color, size}) => (
+                            <Icon name="grid" color={color} size={size}/>
+                        ),
+                    }}
+                    name="Еще" component={screenStack.OtherScreen}/>
             </Tab.Navigator>
 
         </NavigationContainer>
 
-        // <>
-        //     <StatusBar barStyle="dark-content"/>
-        //     <SafeAreaView>
-        //         <View style={styles.container}>
-        //
-        //
-        //             <Text style={styles.h1}>
-        //                 Kukaldosh Boutique Hotel</Text>
-        //
-        //             <View style={styles.chartContainer}>
-        //
-        //
-        //             </View>
-        //             <View style={styles.revenueContainer}>
-        //
-        //             </View>
-        //             <View style={styles.totalsContainer}>
-        //                 <View style={styles.arrival}>
-        //                     <View style={styles.greenIconContainer}>
-        //
-        //                     </View>
-        //                 </View>
-        //                 <View style={styles.exits}>
-        //                     <View style={styles.skyBlueIconContainer}>
-        //
-        //                     </View>
-        //                 </View>
-        //                 <View style={styles.breakRow}></View>
-        //                 <View style={styles.reside}>
-        //                     <View style={styles.yellowIconContainer}>
-        //
-        //                     </View>
-        //                 </View>
-        //                 <View style={styles.free}>
-        //                     <View style={styles.orangeIconContainer}>
-        //
-        //                     </View>
-        //                 </View>
-        //             </View>
-        //
-        //         </View>
-        //     </SafeAreaView>
-        // </>
+
     );
 };
 

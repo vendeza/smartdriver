@@ -11,6 +11,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import {ListItem, Header} from 'react-native-elements';
 import {AreaChart, Grid} from 'react-native-svg-charts';
 import * as shape from 'd3-shape';
+import { Defs, LinearGradient, Stop } from 'react-native-svg';
 
 import {
     SafeAreaView,
@@ -41,52 +42,23 @@ const list = [
 
 ];
 
+const Gradient = ({ index }) => (
+    <Defs key={index}>
+        <LinearGradient id={'gradient'} x1={'0%'} y={'0%'} x2={'0%'} y2={'100%'}>
+            <Stop offset={'0%'} stopColor={'rgba(0, 122, 255,0.22)'} stopOpacity={0.3} />
+            <Stop offset={'100%'} stopColor={'rgba(0, 122, 255,0)'} stopOpacity={0.0} />
+        </LinearGradient>
+    </Defs>
+)
 
 const HomeScreen = () => {
-    const data = [0, 20, 15, 30, 10, 40, 60];
+    const data = [0, 5, 15, 30, 10, 40, 60];
 
     return (
         <View style={{flex: 1, justifyContent: 'space-between', alignItems: 'center'}}>
             <StatusBar backgroundColor="white"/>
             <SafeAreaView>
                 <ScrollView>
-
-{/*                    <Header*/}
-{/*                        backgroundColor={'white'}*/}
-{/*centerComponent={}*/}
-{/*                        // containerStyle={{*/}
-{/*                        //*/}
-{/*                        //     flex: 1,*/}
-{/*                        //     width: PX(400),*/}
-{/*                        //     flexDirection: 'column',*/}
-{/*                        //     alignItems: 'flex-start',*/}
-{/*                        //     justifyContent: 'center',*/}
-{/*                        //     backgroundColor: '#333',*/}
-{/*                        //     paddingBottom: 10,*/}
-{/*                        //     margin: 0,*/}
-{/*                        //     top: 0,*/}
-{/*                        //     bottom: 100,*/}
-{/*                        // }}*/}
-{/*                        //*/}
-{/*                        // placement={'left'}*/}
-
-
-{/*                    >*/}
-
-
-{/*                        /!*<Text style={{*!/*/}
-{/*                        /!*    width: PX(200),*!/*/}
-{/*                        /!*    flex: 1,*!/*/}
-{/*                        /!*    fontSize: PX(24),*!/*/}
-{/*                        /!*    fontWeight: '700',*!/*/}
-{/*                        /!*    padding: 0,*!/*/}
-{/*                        /!*    margin: 0,*!/*/}
-{/*                        /!*    top: 0,*!/*/}
-{/*                        /!*    bottom: 0,*!/*/}
-{/*                        /!*}}>*!/*/}
-{/*                        /!*    Kukaldosh Boutique Hotel </Text>*!/*/}
-
-{/*                    </Header>*/}
                     <View style={styles.container}>
 
 
@@ -94,7 +66,8 @@ const HomeScreen = () => {
                             <View style={{
                                 flexDirection: 'row',
                                 padding: PX(17),
-                                height: '50%',
+                                height: '44%',
+
                                 borderBottomWidth: PX(1),
                                 borderBottomColor: '#E5E5EA',
                             }}>
@@ -108,17 +81,18 @@ const HomeScreen = () => {
 
                             <AreaChart
                                 numberOfTicks={0}
-                                style={{height: PX(80)}}
+                                style={{height: PX(87),borderRadius:PX(6)}}
                                 data={data}
                                 curve={shape.curveNatural}
                                 showGrid={true}
+                                contentInset={{ left:PX(2), bottom: PX(-1.8),right:PX(-2) }}
                                 svg={{
-                                    //strokeWidth:PX(3),
+                                    strokeWidth:PX(2),
                                     stroke: 'rgba(0, 122, 255, 1)',
-                                    fill: 'rgba(0, 122, 255, 0.08)',
+                                    fill: 'url(#gradient)'
                                 }}
                             >
-                                <Grid/>
+                                <Gradient />
                             </AreaChart>
                         </View>
                         <View style={styles.revenueContainer}>
@@ -177,56 +151,41 @@ const HomeScreen = () => {
                             </View>
                         </View>
 
-                        <View>
-                            {
-                                list.map((item, i) => (
-                                    <ListItem style={{color: blue, height: PX(56), padding: 0}} key={i} bottomDivider>
+                        <View
+                            style={styles.listElement}
+                            key={1}>
 
-                                        <ListItem.Content style={{color: blue}}>
-                                            <ListItem.Title style={{color: blue}}>{item.title}</ListItem.Title>
-                                        </ListItem.Content>
-                                        <View style={{
-                                            borderRadius: PX(20),
-                                            backgroundColor: '#C8C7CC',
-                                            padding: PX(4),
-                                            paddingLeft: PX(20),
-                                            paddingRight: PX(20),
-                                        }}>
-                                            <Text style={{
+                            <View style={{flex:1}}>
+                               <Text style={styles.textListElement}>{'Новое Бронирование'}</Text>
+                            </View>
+                            <View style={styles.bubleCount}>
+                                <Text style={styles.textBubleListElement}>{'3'}</Text>
+                            </View>
+                            <Icon size={PX(16)} name={'arrow-forward-ios'} color={'#C8C7CC'}/>
+                        </View>
+                        <View
+                            style={styles.listElement}
+                            key={2}>
 
-                                                color: 'white',
-                                                fontWeight: '700',
-                                                fontSize: PX(14),
-                                            }}>{'3'}</Text>
-                                        </View>
-                                        <Icon size={PX(16)} name={item.icon} color={'#C8C7CC'}/>
-                                    </ListItem>
-                                ))
+                            <View style={{flex:1}}>
+                                <Text style={styles.textListElement}>{'Отмененные Брони'}</Text>
+                            </View>
+                            <View style={styles.bubleCount}>
+                                <Text style={styles.textBubleListElement}>{'3'}</Text>
+                            </View>
+                            <Icon size={PX(16)} name={'arrow-forward-ios'} color={'#C8C7CC'}/>
+                        </View>
+                        <View
+                            style={{...styles.listElement, borderBottomWidth:0}}
+                            key={3}>
 
-                            }
-                            <ListItem
-                                style={{borderWidth: 0, borderColor: '#fff', color: blue, height: PX(56), padding: 0}}
-                                key={4}>
-
-                                <ListItem.Content style={{color: blue}}>
-                                    <ListItem.Title style={{color: blue}}>{'Незаезды'}</ListItem.Title>
-                                </ListItem.Content>
-                                <View style={{
-                                    borderRadius: PX(20),
-                                    backgroundColor: '#C8C7CC',
-                                    padding: PX(4),
-                                    paddingLeft: PX(20),
-                                    paddingRight: PX(20),
-                                }}>
-                                    <Text style={{
-
-                                        color: 'white',
-                                        fontWeight: '700',
-                                        fontSize: PX(14),
-                                    }}>{'3'}</Text>
-                                </View>
-                                <Icon size={PX(16)} name={'arrow-forward-ios'} color={'#C8C7CC'}/>
-                            </ListItem>
+                            <View style={{flex:1}}>
+                                <Text style={styles.textListElement}>{'Незаезд'}</Text>
+                            </View>
+                            <View style={styles.bubleCount}>
+                                <Text style={styles.textBubleListElement}>{'0'}</Text>
+                            </View>
+                            <Icon size={PX(16)} name={'arrow-forward-ios'} color={'#C8C7CC'}/>
                         </View>
                     </View>
                 </ScrollView>
@@ -292,6 +251,33 @@ const styles = StyleSheet.create({
         fontSize: PX(18), // 3 * designSize
         fontWeight: '700',
     },
+    listElement:{
+        borderBottomWidth: 1,
+        borderBottomColor: '#E5E5EA',
+        color: blue,
+        paddingTop: PX(10),
+        paddingBottom: PX(10),
+        flexDirection:'row',
+        alignItems:'center'
+    },
+    bubleCount:{
+        borderRadius: PX(12),
+        backgroundColor: '#C8C7CC',
+        padding: PX(6),
+        paddingLeft: PX(20),
+        paddingRight: PX(20),
+        marginRight:PX(10)
+    },
+    textListElement:{
+        color: blue,
+        fontWeight: '400',
+        fontSize: PX(17),
+    },
+    textBubleListElement:{
+        color: 'white',
+        fontWeight: '700',
+        fontSize: PX(14),
+    },
     container: {
         paddingLeft: PX(17),
         paddingRight: PX(17),
@@ -332,6 +318,7 @@ const styles = StyleSheet.create({
         width: '100%',
         flexWrap: 'wrap',
         flexDirection: 'row',
+        marginBottom: PX(17)
     },
     breakRow: {
         height: 0,

@@ -32,7 +32,7 @@ const BooksScreen = ({navigation}) => {
                             padding: 0,
                             margin: 0,
                             top: 0,
-                            height: PX(100),
+                            height: PX(120),
                             flexDirection: 'row',
                             justifyContent: 'flex-end',
                             alignItems: 'flex-start',
@@ -42,7 +42,7 @@ const BooksScreen = ({navigation}) => {
                         }}
                         leftContainerStyle={{
                             paddingTop: 10,
-                            height: PX(100),
+                            height: PX(120),
                             margin: 0,
                             top: 0,
                         }}
