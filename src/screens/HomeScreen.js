@@ -9,7 +9,7 @@
 import React, {useState, useEffect} from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {ListItem, Header} from 'react-native-elements';
-import { AreaChart, Grid } from 'react-native-svg-charts'
+import {AreaChart, Grid} from 'react-native-svg-charts';
 import * as shape from 'd3-shape';
 
 import {
@@ -43,7 +43,7 @@ const list = [
 
 
 const HomeScreen = () => {
-    const data = [0,20,15, 30, 10, 40, 60]
+    const data = [0, 20, 15, 30, 10, 40, 60];
 
     return (
         <View style={{flex: 1, justifyContent: 'space-between', alignItems: 'center'}}>
@@ -51,60 +51,74 @@ const HomeScreen = () => {
             <SafeAreaView>
                 <ScrollView>
 
-                    <Header
-                        backgroundColor={'white'}
-                        containerStyle={{
-                            padding: 0,
-                            margin: 0,
-                            top: 0,
-                            height: PX(100),
-                            flexDirection: 'row',
-                            justifyContent: 'flex-end',
-                            alignItems: 'flex-start',
-                            flex: 1,
-                            borderBottomWidth:0
-                            //backgroundColor: '#333',
-                        }}
-                        leftContainerStyle={{
-                            paddingTop: 10,
-                            height: PX(100),
-                            margin: 0,
-                            top: 0,
-                        }}
-                        leftComponent={<View style={{paddingLeft: PX(8),width:PX(200)}}>
+{/*                    <Header*/}
+{/*                        backgroundColor={'white'}*/}
+{/*centerComponent={}*/}
+{/*                        // containerStyle={{*/}
+{/*                        //*/}
+{/*                        //     flex: 1,*/}
+{/*                        //     width: PX(400),*/}
+{/*                        //     flexDirection: 'column',*/}
+{/*                        //     alignItems: 'flex-start',*/}
+{/*                        //     justifyContent: 'center',*/}
+{/*                        //     backgroundColor: '#333',*/}
+{/*                        //     paddingBottom: 10,*/}
+{/*                        //     margin: 0,*/}
+{/*                        //     top: 0,*/}
+{/*                        //     bottom: 100,*/}
+{/*                        // }}*/}
+{/*                        //*/}
+{/*                        // placement={'left'}*/}
 
-                            <Text style={{...styles.h1,padding:0}}>
-                                Kukaldosh Boutique Hotel </Text>
-                        </View>}
-                        placement={'left'}
-                    >
 
-                    </Header>
+{/*                    >*/}
+
+
+{/*                        /!*<Text style={{*!/*/}
+{/*                        /!*    width: PX(200),*!/*/}
+{/*                        /!*    flex: 1,*!/*/}
+{/*                        /!*    fontSize: PX(24),*!/*/}
+{/*                        /!*    fontWeight: '700',*!/*/}
+{/*                        /!*    padding: 0,*!/*/}
+{/*                        /!*    margin: 0,*!/*/}
+{/*                        /!*    top: 0,*!/*/}
+{/*                        /!*    bottom: 0,*!/*/}
+{/*                        /!*}}>*!/*/}
+{/*                        /!*    Kukaldosh Boutique Hotel </Text>*!/*/}
+
+{/*                    </Header>*/}
                     <View style={styles.container}>
 
 
                         <View style={styles.chartContainer}>
-                            <View style={{ flexDirection:'row',padding:PX(17),height: "50%", borderBottomWidth:PX(1),borderBottomColor:"#E5E5EA"}}>
-                                <View style={{flex:1}}>
-                                    <Text style={styles.h2}>{"Загрузка"}</Text>
-                                    <Text style={styles.h3}>{"за текущий месяц"}</Text>
+                            <View style={{
+                                flexDirection: 'row',
+                                padding: PX(17),
+                                height: '50%',
+                                borderBottomWidth: PX(1),
+                                borderBottomColor: '#E5E5EA',
+                            }}>
+                                <View style={{flex: 1}}>
+                                    <Text style={styles.h2}>{'Загрузка'}</Text>
+                                    <Text style={styles.h3}>{'за текущий месяц'}</Text>
                                 </View>
-                                <Text style={{...styles.revenueText, flex:1,textAlign:'right'}}>{"35%"}</Text>
+                                <Text style={{...styles.revenueText, flex: 1, textAlign: 'right'}}>{'35%'}</Text>
 
                             </View>
 
                             <AreaChart
                                 numberOfTicks={0}
-                                style={{ height: PX(80) }}
+                                style={{height: PX(80)}}
                                 data={data}
                                 curve={shape.curveNatural}
                                 showGrid={true}
                                 svg={{
                                     //strokeWidth:PX(3),
                                     stroke: 'rgba(0, 122, 255, 1)',
-                                    fill: 'rgba(0, 122, 255, 0.08)' }}
+                                    fill: 'rgba(0, 122, 255, 0.08)',
+                                }}
                             >
-                                <Grid />
+                                <Grid/>
                             </AreaChart>
                         </View>
                         <View style={styles.revenueContainer}>
@@ -127,9 +141,9 @@ const HomeScreen = () => {
                                 <View style={styles.greenIconContainer}>
                                     <Icon name={'login'} size={PX(24)} color={'white'}/>
                                 </View>
-                                <View style={{marginLeft:PX(12)}}>
-                                    <Text style={styles.h4}>{"Заезд"}</Text>
-                                    <Text style={styles.totalValue}>{"2"}</Text>
+                                <View style={{marginLeft: PX(12)}}>
+                                    <Text style={styles.h4}>{'Заезд'}</Text>
+                                    <Text style={styles.totalValue}>{'2'}</Text>
                                 </View>
                             </View>
 
@@ -137,9 +151,9 @@ const HomeScreen = () => {
                                 <View style={styles.orangeIconContainer}>
                                     <Icon name={'logout'} size={24} color={'white'}/>
                                 </View>
-                                <View style={{marginLeft:PX(12)}}>
-                                    <Text style={styles.h4}>{"Выезд"}</Text>
-                                    <Text style={styles.totalValue}>{"2"}</Text>
+                                <View style={{marginLeft: PX(12)}}>
+                                    <Text style={styles.h4}>{'Выезд'}</Text>
+                                    <Text style={styles.totalValue}>{'2'}</Text>
                                 </View>
                             </View>
                             <View style={styles.breakRow}></View>
@@ -147,18 +161,18 @@ const HomeScreen = () => {
                                 <View style={styles.yellowIconContainer}>
                                     <Icon name={'person-outline'} size={24} color={'white'}/>
                                 </View>
-                                <View style={{marginLeft:PX(12)}}>
-                                    <Text style={styles.h4}>{"Проживают"}</Text>
-                                    <Text style={styles.totalValue}>{"4"}</Text>
+                                <View style={{marginLeft: PX(12)}}>
+                                    <Text style={styles.h4}>{'Проживают'}</Text>
+                                    <Text style={styles.totalValue}>{'4'}</Text>
                                 </View>
                             </View>
                             <View style={styles.free}>
                                 <View style={styles.skyBlueIconContainer}>
                                     <Icon name={'add'} size={24} color={'white'}/>
                                 </View>
-                                <View style={{marginLeft:PX(12)}}>
-                                    <Text style={styles.h4}>{"Свободных"}</Text>
-                                    <Text style={styles.totalValue}>{"3"}</Text>
+                                <View style={{marginLeft: PX(12)}}>
+                                    <Text style={styles.h4}>{'Свободных'}</Text>
+                                    <Text style={styles.totalValue}>{'3'}</Text>
                                 </View>
                             </View>
                         </View>
@@ -166,7 +180,7 @@ const HomeScreen = () => {
                         <View>
                             {
                                 list.map((item, i) => (
-                                    <ListItem style={{color: blue, height:PX(56), padding:0}} key={i} bottomDivider>
+                                    <ListItem style={{color: blue, height: PX(56), padding: 0}} key={i} bottomDivider>
 
                                         <ListItem.Content style={{color: blue}}>
                                             <ListItem.Title style={{color: blue}}>{item.title}</ListItem.Title>
@@ -190,10 +204,12 @@ const HomeScreen = () => {
                                 ))
 
                             }
-                            <ListItem style={{borderWidth:0, borderColor:"#fff",color: blue, height:PX(56), padding:0}} key={4} >
+                            <ListItem
+                                style={{borderWidth: 0, borderColor: '#fff', color: blue, height: PX(56), padding: 0}}
+                                key={4}>
 
                                 <ListItem.Content style={{color: blue}}>
-                                    <ListItem.Title style={{color: blue}}>{"Незаезды"}</ListItem.Title>
+                                    <ListItem.Title style={{color: blue}}>{'Незаезды'}</ListItem.Title>
                                 </ListItem.Content>
                                 <View style={{
                                     borderRadius: PX(20),
@@ -243,9 +259,9 @@ const iconContainer = {
     alignItems: 'center',
     justifyContent: 'center',
 };
-const totalBlock ={
+const totalBlock = {
     flex: 1,
-    flexDirection:"row",
+    flexDirection: 'row',
 };
 
 const styles = StyleSheet.create({
@@ -272,7 +288,7 @@ const styles = StyleSheet.create({
         fontWeight: '400',
         color: lightGray,
     },
-    totalValue:{
+    totalValue: {
         fontSize: PX(18), // 3 * designSize
         fontWeight: '700',
     },

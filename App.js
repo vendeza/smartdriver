@@ -10,11 +10,12 @@ import React from 'react';
 //import CustomIcon from './src/styles/CustomIcon';
 
 import {
-    StyleSheet, View,
+    StyleSheet, View,Text
 } from 'react-native';
 
 import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createStackNavigator,} from '@react-navigation/stack';
 //import {ExitIcons} from './assets/';
 import {create, PREDEF_RES} from 'react-native-pixel-perfect';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -57,7 +58,46 @@ const Tab = createBottomTabNavigator();
 
 const perfectSize = create(PREDEF_RES.iphoneX.px);
 
+const HomeStack = createStackNavigator();
+const SettingsStack = createStackNavigator();
 
+function HomeStackScreen() {
+    return (
+        <HomeStack.Navigator>
+            <HomeStack.Screen
+                name="Главная"
+                component={screenStack.HomeScreen}
+                options={{
+                    headerTitle: (
+                        <View style={{flexDirection:'row',borderBottomWidth:0, paddingTop:PX(76), paddingBottom:PX(0)}}>
+                            <Text style={{flex:1,fontSize:PX(24), fontWeight:"700"}}>{"Kukaldosh Boutique Hotel"}</Text>
+                            <Text style={{flex:1,fontSize:PX(24), fontWeight:"700"}}>{""}</Text>
+                        </View>
+
+                    ),
+
+                    headerStyle: {
+                        shadowColor: 'transparent',
+                     //   backgroundColor: '#f4511e',
+                        borderColor:"#fff",
+                        borderBottomWidth:0,
+                     // width:PX(200)
+                        height:PX(120),
+
+                    },
+                    headerTitleAlign:'left',
+                    headerTintColor: '#fff',
+                    headerTitleStyle: {
+                        fontWeight: 'bold',
+                        fontSize:PX(24),
+                        color:"black",
+                        borderBottomWidth:0,
+                    },
+                }}
+            />
+        </HomeStack.Navigator>
+    );
+}
 const App = () => {
 
     const MyTheme = {
@@ -73,15 +113,24 @@ const App = () => {
         <NavigationContainer theme={MyTheme}>
 
             <Tab.Navigator
-
+                options={{
+                    title: 'My home',
+                    headerStyle: {
+                        backgroundColor: '#555',
+                    },
+                    headerTintColor: '#fff',
+                    headerTitleStyle: {
+                        fontWeight: 'bold',
+                    },
+                }}
                 tabBarOptions={{
                     activeTintColor: '#007AFF',
 
                     style: {
-                        height: PX(70),
-                        paddingTop:PX(10),
-                        paddingBottom:PX(10),
-                        backgroundColor:"rgba(248,248,248,0.72)"
+                        height: PX(80),
+                        paddingTop:PX(5),
+                        paddingBottom:PX(26),
+                        backgroundColor:"#e9e9e9"
 
                 }
                 }}
@@ -95,7 +144,7 @@ const App = () => {
                                 ? 'home-filled'
                                 : 'home-filled';
                             return <MaterialIcons name={'home-filled'} size={30}
-                                                  color={focused ? '#007AFF' : '#A1A1A1'}/>;
+                                                  color={focused ? '#007AFF' : '#A1A1A1'} />;
                         } else if (route.name === 'Брони') {
                             iconName = focused ? 'ios-layers' : 'ios-layers';
                         } else if (route.name === 'Статистика') {
@@ -109,7 +158,8 @@ const App = () => {
                 })}
             >
                 <Tab.Screen
-                    name="Главная" component={screenStack.HomeScreen}/>
+
+                    name="Главная" component={HomeStackScreen}/>
                 <Tab.Screen name="Брони" component={screenStack.BooksScreen}/>
                 <Tab.Screen name="Статистика" component={screenStack.StatsScreen}/>
                 <Tab.Screen
