@@ -9,6 +9,8 @@
 import React, {useState, useEffect} from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {ListItem, Header} from 'react-native-elements';
+import { AreaChart, Grid } from 'react-native-svg-charts'
+import * as shape from 'd3-shape';
 
 import {
     SafeAreaView,
@@ -49,6 +51,8 @@ const list = [
 
 
 const HomeScreen = () => {
+    const data = [0,20,15, 30, 10, 40, 60]
+
     return (
         <View style={{flex: 1, justifyContent: 'space-between', alignItems: 'center'}}>
             <StatusBar backgroundColor="white"/>
@@ -88,7 +92,18 @@ const HomeScreen = () => {
 
                         <View style={styles.chartContainer}>
 
-
+                            <AreaChart
+                                numberOfTicks={0}
+                                style={{ height: "100%" }}
+                                data={data}
+                                curve={shape.curveNatural}
+                                showGrid={true}
+                                svg={{
+                                    stroke: 'rgba(0, 122, 255, 1)',
+                                    fill: 'rgba(0, 122, 255, 0.2)' }}
+                            >
+                                <Grid />
+                            </AreaChart>
                         </View>
                         <View style={styles.revenueContainer}>
                             <Text style={{...styles.h2, ...styles.revenueBlock}}>Доход</Text>
@@ -224,6 +239,7 @@ const styles = StyleSheet.create({
         marginTop: PX(17),
         alignSelf: 'center',
         ...blockStyles,
+        paddingBottom: 0
     },
 
 
