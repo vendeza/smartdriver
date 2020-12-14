@@ -16,12 +16,12 @@ import {
     StatusBar,
 } from 'react-native';
 
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer,DefaultTheme } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import {create, PREDEF_RES} from 'react-native-pixel-perfect';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 import * as Screen from './src/screens';
 
@@ -45,9 +45,17 @@ const Tab = createBottomTabNavigator();
 const perfectSize = create(PREDEF_RES.iphoneX.px);
 const App = () => {
 
+    const MyTheme = {
+        ...DefaultTheme,
+        colors: {
+            ...DefaultTheme.colors,
+            primary: 'rgb(255, 45, 85)',
+            background:"white"
+        },
+    };
 
     return (
-        <NavigationContainer>
+        <NavigationContainer theme={MyTheme}>
 
                         <Tab.Navigator
                             screenOptions={({ route }) => ({
@@ -59,7 +67,7 @@ const App = () => {
                                             ? 'menu'
                                             : 'menu';
                                     } else {
-                                        iconName = focused ? 'login' : 'login';
+                                        iconName = focused ? 'stats-chart' : 'stats-chart';
                                     }
 
                                     // You can return any component that you like here!

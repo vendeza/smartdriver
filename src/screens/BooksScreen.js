@@ -2,13 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {View, StyleSheet, StatusBar, ScrollView, Text, Button, TouchableOpacity, Image} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-
-
-
 const BooksScreen = ({navigation}) => {
-
-
-
     return (
         <View style={styles.container}>
 
@@ -23,8 +17,8 @@ const BooksScreen = ({navigation}) => {
         </View>
     );
 };
-const styles = StyleSheet.create({
 
+const styles = StyleSheet.create({
     container: {
         backgroundColor: '#F2F2F2',
         flex: 1,

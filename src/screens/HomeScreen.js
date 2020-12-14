@@ -8,6 +8,8 @@
 
 import React, {useState, useEffect} from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import {ListItem, Header} from 'react-native-elements';
+
 import {
     SafeAreaView,
     StyleSheet,
@@ -26,57 +28,142 @@ const designResolution = {
 
 const perfectSize = create(PREDEF_RES.iphoneX.px);
 
+const PX = (px) => {
+    return perfectSize(px * 3);
+};
+
+const list = [
+    {
+        title: 'Новые Бронирование',
+        icon: 'arrow-forward-ios',
+    },
+    {
+        title: 'Отмененные брони',
+        icon: 'arrow-forward-ios',
+    },
+    {
+        title: 'Незаезды',
+        icon: 'arrow-forward-ios',
+    },
+];
+
+
 const HomeScreen = () => {
     return (
-        <View  style={{ flex: 1, justifyContent: 'space-between', alignItems: 'center' }}>
-            <StatusBar barStyle="dark-content"/>
+        <View style={{flex: 1, justifyContent: 'space-between', alignItems: 'center'}}>
+            <StatusBar backgroundColor="white"/>
             <SafeAreaView>
-                <View style={styles.container}>
+                <ScrollView>
+
+                    <Header
+                        backgroundColor={'white'}
+                        containerStyle={{
+                            padding: 0,
+                            margin: 0,
+                            top: 0,
+                            height: PX(80),
+                            flexDirection: 'row',
+                            justifyContent: 'flex-end',
+                            alignItems: 'center',
+                            flex: 1,
+                            //backgroundColor: '#333',
+                        }}
+                        leftContainerStyle={{
+                            padding: 0,
+                            height: PX(80),
+                            margin: 0,
+                            top: 0,
+                        }}
+                        leftComponent={<View style={{paddingLeft: PX(8),width:PX(200)}}>
+
+                            <Text style={{...styles.h1,padding:0}}>
+                                Kukaldosh Boutique Hotel </Text>
+                        </View>}
+                        placement={'left'}
+                    >
+
+                    </Header>
+                    <View style={styles.container}>
 
 
-                    <Text style={styles.h1}>
-                        Kukaldosh Boutique Hotel</Text>
+                        <View style={styles.chartContainer}>
 
-                    <View style={styles.chartContainer}>
 
+                        </View>
+                        <View style={styles.revenueContainer}>
+                            <Text style={{...styles.h2, ...styles.revenueBlock}}>Доход</Text>
+                            <Text style={{...styles.revenueText}}>450 000 000</Text>
+                            <Text style={{...styles.h4}}>{'  UZS'}</Text>
+                            <View style={styles.breakRow}></View>
+                            <Text style={{...styles.h3, ...styles.revenueBlock}}>за текущий месяц</Text>
+                        </View>
+                        <View style={styles.totalsContainer}>
+                            <View style={styles.title}>
+                                <Text style={styles.h2}>{'Сводка'}</Text>
+                                <Text style={styles.h3}>{'  за сегодня'}</Text>
+                            </View>
+
+                            <View style={styles.breakRow}></View>
+                            <View style={styles.arrival}>
+                                <View style={styles.greenIconContainer}>
+                                    <Icon name={'menu'} size={PX(24)} color={'white'}/>
+                                </View>
+                            </View>
+
+                            <View style={styles.exits}>
+                                <View style={styles.skyBlueIconContainer}>
+                                    <Icon name={'menu'} size={24} color={'white'}/>
+                                </View>
+                            </View>
+                            <View style={styles.breakRow}></View>
+                            <View style={styles.reside}>
+                                <View style={styles.yellowIconContainer}>
+                                    <Icon name={'menu'} size={24} color={'white'}/>
+                                </View>
+                            </View>
+                            <View style={styles.free}>
+                                <View style={styles.orangeIconContainer}>
+                                    <Icon name={'menu'} size={24} color={'white'}/>
+                                </View>
+                            </View>
+                        </View>
+
+
+                        <View>
+                            {
+                                list.map((item, i) => (
+                                    <ListItem key={i} bottomDivider>
+
+                                        <ListItem.Content>
+                                            <ListItem.Title style={{color: blue}}>{item.title}</ListItem.Title>
+                                        </ListItem.Content>
+                                        <View style={{
+                                            borderRadius: 30,
+                                            backgroundColor: '#C8C7CC',
+                                            padding: PX(8),
+                                            paddingLeft: PX(20),
+                                            paddingRight: PX(20),
+                                        }}>
+                                            <Text style={{
+                                                color: 'white',
+                                                fontWeight: '700',
+                                                fontSize: PX(14),
+                                            }}>{'3'}</Text>
+                                        </View>
+                                        <Icon size={PX(16)} name={item.icon} color={'#C8C7CC'}/>
+                                    </ListItem>
+                                ))
+                            }
+                        </View>
 
                     </View>
-                    <View style={styles.revenueContainer}>
-
-                    </View>
-                    <View style={styles.totalsContainer}>
-                        <View style={styles.arrival}>
-                            <View style={styles.greenIconContainer}>
-
-                            </View>
-                        </View>
-                        <View style={styles.exits}>
-                            <View style={styles.skyBlueIconContainer}>
-
-                            </View>
-                        </View>
-                        <View style={styles.breakRow}></View>
-                        <View style={styles.reside}>
-                            <View style={styles.yellowIconContainer}>
-
-                            </View>
-                        </View>
-                        <View style={styles.free}>
-                            <View style={styles.orangeIconContainer}>
-
-                            </View>
-                        </View>
-                    </View>
-
-                </View>
+                </ScrollView>
             </SafeAreaView>
         </View>
     );
 };
 
-const PX = (px) => {
-    return perfectSize(px * 3);
-};
+
 const black = '#000';
 const lightBlue = '#F2F2F7';
 const lightGray = '#8E8E93';
@@ -97,6 +184,8 @@ const iconContainer = {
     width: PX(40),
     height: PX(40),
     borderRadius: PX(10),
+    alignItems: 'center',
+    justifyContent: 'center',
 };
 const styles = StyleSheet.create({
     h1: {
@@ -106,21 +195,28 @@ const styles = StyleSheet.create({
         color: black,
     },
     h2: {
-        fontSize: PX(54), // 3 * designSize
-        lineHeight: 28,
+        fontSize: PX(18), // 3 * designSize
+        lineHeight: PX(18),
         fontWeight: '700',
     },
     h3: {
-        fontSize: PX(42), // 3 * designSize
-        lineHeight: 28,
+        fontSize: PX(14), // 3 * designSize
+        lineHeight: PX(18),
         fontWeight: '400',
         color: lightGray,
     },
+    h4: {
+        fontSize: PX(12), // 3 * designSize
+        lineHeight: PX(18),
+        fontWeight: '700',
+        color: lightGray,
+    },
+
     container: {
         paddingLeft: PX(17),
         paddingRight: PX(17),
         backgroundColor: 'white',
-        flex:1
+        flex: 1,
     },
     chartContainer: {
         width: '100%',
@@ -129,17 +225,36 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         ...blockStyles,
     },
+
+
     revenueContainer: {
         width: '100%',
-        height: PX(74),
-
+        padding: PX(17),
+        flexDirection: 'row',
+        flexWrap: 'wrap',
         ...blockStyles,
     },
+    title: {
+        flexDirection: 'row',
+        paddingBottom: PX(17),
+    },
+    revenueBlock: {
+        flex: 1,
+        padding: PX(1),
+    },
+
+    revenueText: {
+        fontSize: PX(18), // 3 * designSize
+        lineHeight: PX(18),
+        fontWeight: '700',
+        color: red,
+    },
+
     totalsContainer: {
+        marginTop: PX(7),
         width: '100%',
         flexWrap: 'wrap',
         flexDirection: 'row',
-
     },
     breakRow: {
         height: 0,
