@@ -13,13 +13,13 @@ import {
     StyleSheet, View,
 } from 'react-native';
 
-import { NavigationContainer,DefaultTheme } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 //import {ExitIcons} from './assets/';
 import {create, PREDEF_RES} from 'react-native-pixel-perfect';
 import Icon from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import Image from 'react-native-remote-svg'
+import Image from 'react-native-remote-svg';
 
 import * as Screen from './src/screens';
 
@@ -38,23 +38,24 @@ import Svg, {G, Path} from 'react-native-svg';
 // * Name: <Svg />; or
 // * Name: { svg: <Svg />, viewBox: '0 0 50 50' }
 
-const ExitIcons=()=>{
-    return(
+const ExitIcons = () => {
+    return (
         <Svg width="20" height="26" viewBox="0 0 20 26" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
                 d="M19 7V4C19 2.34315 17.6569 1 16 1H4C2.34315 1 1 2.34315 1 4V21V22C1 23.6569 2.34315 25 4 25H16C17.6569 25 19 23.6569 19 22V19"
                 stroke="white" stroke-width="1.5" stroke-linejoin="round"/>
-            <path d="M15.5119 9.74334L19 13.0886L15.5119 16.4338" stroke="white" stroke-width="1.5" stroke-linecap="round"
+            <path d="M15.5119 9.74334L19 13.0886L15.5119 16.4338" stroke="white" stroke-width="1.5"
+                  stroke-linecap="round"
                   stroke-linejoin="round"/>
             <path d="M18.7505 13.0506H10.1862" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
         </Svg>
-    )
-}
+    );
+};
 import MySVGImage from './assets/icons/exit.svg';
+
 const Tab = createBottomTabNavigator();
 
 const perfectSize = create(PREDEF_RES.iphoneX.px);
-
 
 
 const App = () => {
@@ -64,41 +65,67 @@ const App = () => {
         colors: {
             ...DefaultTheme.colors,
             primary: 'rgb(255, 45, 85)',
-            background:"white"
+            background: '#fff',
         },
     };
 
     return (
         <NavigationContainer theme={MyTheme}>
 
-                        <Tab.Navigator
-                            screenOptions={({ route }) => ({
-                                tabBarIcon: ({ focused, color, size }) => {
-                                    let iconName;
+            <Tab.Navigator
 
-                                    if (route.name === 'Home') {
-                                        iconName = focused
-                                            ? 'home-filled'
-                                            : 'home-filled';
-                                        return <MaterialIcons name={'home-filled'} size={30} color={focused?"#007AFF":'#A1A1A1'}/>
-                                    } else if(route.name === 'Books') {
-                                        iconName = focused ? 'ios-layers' : 'ios-layers';
-                                    } else if(route.name === 'Stats') {
-                                        iconName = focused ? 'stats-chart' : 'stats-chart';
-                                    }else{
-                                        iconName = focused ? 'grid' : 'grid';
-                                    }
+                tabBarOptions={{
+                    activeTintColor: '#007AFF',
 
-                                    // You can return any component that you like here!
-                                    return <Icon name={iconName} size={24} color={'#A1A1A1'}/>
-                                }
-                            })}
-                        >
-                            <Tab.Screen name="Home" component={screenStack.HomeScreen} />
-                            <Tab.Screen name="Books" component={screenStack.BooksScreen} />
-                            <Tab.Screen name="Stats" component={screenStack.StatsScreen} />
-                            <Tab.Screen name="Other" component={screenStack.OtherScreen} />
-                        </Tab.Navigator>
+                    style: {
+                        height: PX(70),
+                        paddingTop:PX(10),
+                        paddingBottom:PX(10),
+                        backgroundColor:"rgba(248,248,248,0.72)"
+
+                }
+                }}
+                screenOptions={({route}) => ({
+
+                    tabBarIcon: ({focused, color, size}) => {
+                        let iconName;
+
+                        if (route.name === 'Главная') {
+                            iconName = focused
+                                ? 'home-filled'
+                                : 'home-filled';
+                            return <MaterialIcons name={'home-filled'} size={30}
+                                                  color={focused ? '#007AFF' : '#A1A1A1'}/>;
+                        } else if (route.name === 'Брони') {
+                            iconName = focused ? 'ios-layers' : 'ios-layers';
+                        } else if (route.name === 'Статистика') {
+                            iconName = focused ? 'stats-chart' : 'stats-chart';
+                        } else {
+                            return;
+                        }
+
+                       return <Icon name={iconName} size={24}color={focused ? '#007AFF' : '#A1A1A1'}/>;
+                    },
+                })}
+            >
+                <Tab.Screen
+                    name="Главная" component={screenStack.HomeScreen}/>
+                <Tab.Screen name="Брони" component={screenStack.BooksScreen}/>
+                <Tab.Screen name="Статистика" component={screenStack.StatsScreen}/>
+                <Tab.Screen
+
+                    options={{
+                    tabBarLabel: 'Еще',
+                    tabStyle:{top:0,lineHeight:0,margin:0, bottom:0},
+                    labelStyle:{top:0,lineHeight:0,margin:0,color:"#333"},
+
+                    safeAreaInsets:{top:0,bottom:0},
+                    tabBarIcon: ({color, size}) => (
+                        <Icon name="grid" color={color} size={size}/>
+                    ),
+                }}
+                            name="Еще" component={screenStack.OtherScreen}/>
+            </Tab.Navigator>
 
         </NavigationContainer>
 
@@ -148,7 +175,9 @@ const App = () => {
     );
 };
 
-const PX =(px)=>{return perfectSize(px*3)};
+const PX = (px) => {
+    return perfectSize(px * 3);
+};
 const black = '#000';
 const lightBlue = '#F2F2F7';
 const lightGray = '#8E8E93';
@@ -166,10 +195,10 @@ const blockStyles = {
 };
 
 const iconContainer = {
-    width:PX(40),
-    height:PX(40),
-    borderRadius: PX(10)
-}
+    width: PX(40),
+    height: PX(40),
+    borderRadius: PX(10),
+};
 const styles = StyleSheet.create({
     h1: {
         fontSize: PX(24), // 3 * designSize
@@ -196,7 +225,7 @@ const styles = StyleSheet.create({
     chartContainer: {
         width: '100%',
         height: PX(157),
-        marginTop:PX(17),
+        marginTop: PX(17),
         alignSelf: 'center',
         ...blockStyles,
     },
@@ -206,60 +235,60 @@ const styles = StyleSheet.create({
 
         ...blockStyles,
     },
-    totalsContainer:{
+    totalsContainer: {
         width: '100%',
-        flexWrap:'wrap',
-        flexDirection:'row',
+        flexWrap: 'wrap',
+        flexDirection: 'row',
 
     },
-    breakRow:{
-        height:0,
-        flexBasis:'100%'
+    breakRow: {
+        height: 0,
+        flexBasis: '100%',
     },
-    arrival:{
+    arrival: {
         backgroundColor: lightBlue,
-        borderRadius:PX(10),
-        padding:PX(8),
-        flex:1,
+        borderRadius: PX(10),
+        padding: PX(8),
+        flex: 1,
     },
-    exits:{
+    exits: {
         backgroundColor: lightBlue,
-        borderRadius:PX(10),
-        padding:PX(8),
-        marginLeft:PX(17),
-        flex:1,
+        borderRadius: PX(10),
+        padding: PX(8),
+        marginLeft: PX(17),
+        flex: 1,
     },
-    reside:{
+    reside: {
         backgroundColor: lightBlue,
-        borderRadius:PX(10),
-        padding:PX(8),
-        marginTop:PX(17),
-        flex:1,
+        borderRadius: PX(10),
+        padding: PX(8),
+        marginTop: PX(17),
+        flex: 1,
     },
-    free:{
+    free: {
         backgroundColor: lightBlue,
-        borderRadius:PX(10),
-        padding:PX(8),
-        marginTop:PX(17),
-        marginLeft:PX(17),
-        flex:1,
+        borderRadius: PX(10),
+        padding: PX(8),
+        marginTop: PX(17),
+        marginLeft: PX(17),
+        flex: 1,
     },
-    greenIconContainer:{
+    greenIconContainer: {
         ...iconContainer,
-        backgroundColor:green
+        backgroundColor: green,
     },
-    skyBlueIconContainer:{
+    skyBlueIconContainer: {
         ...iconContainer,
-        backgroundColor:skyBlue
+        backgroundColor: skyBlue,
     },
-    yellowIconContainer:{
+    yellowIconContainer: {
         ...iconContainer,
-        backgroundColor:yellow
+        backgroundColor: yellow,
     },
-    orangeIconContainer:{
+    orangeIconContainer: {
         ...iconContainer,
-        backgroundColor:orange
-    }
+        backgroundColor: orange,
+    },
 
 });
 
