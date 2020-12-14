@@ -106,24 +106,24 @@ const HomeScreen = () => {
                             <View style={styles.breakRow}></View>
                             <View style={styles.arrival}>
                                 <View style={styles.greenIconContainer}>
-                                    <Icon name={'menu'} size={PX(24)} color={'white'}/>
+                                    <Icon name={'login'} size={PX(24)} color={'white'}/>
                                 </View>
                             </View>
 
                             <View style={styles.exits}>
                                 <View style={styles.skyBlueIconContainer}>
-                                    <Icon name={'menu'} size={24} color={'white'}/>
+                                    <Icon name={'logout'} size={24} color={'white'}/>
                                 </View>
                             </View>
                             <View style={styles.breakRow}></View>
                             <View style={styles.reside}>
                                 <View style={styles.yellowIconContainer}>
-                                    <Icon name={'menu'} size={24} color={'white'}/>
+                                    <Icon name={'person-outline'} size={24} color={'white'}/>
                                 </View>
                             </View>
                             <View style={styles.free}>
                                 <View style={styles.orangeIconContainer}>
-                                    <Icon name={'menu'} size={24} color={'white'}/>
+                                    <Icon name={'add'} size={24} color={'white'}/>
                                 </View>
                             </View>
                         </View>
@@ -132,15 +132,15 @@ const HomeScreen = () => {
                         <View>
                             {
                                 list.map((item, i) => (
-                                    <ListItem key={i} bottomDivider>
+                                    <ListItem style={{color: blue, paddingLeft:0,marginLeft:0}} key={i} bottomDivider>
 
-                                        <ListItem.Content>
-                                            <ListItem.Title style={{color: blue}}>{item.title}</ListItem.Title>
+                                        <ListItem.Content style={{color: blue, paddingLeft:0, marginLeft:0}}>
+                                            <ListItem.Title style={{color: blue, paddingLeft:0,marginLeft:0}}>{item.title}</ListItem.Title>
                                         </ListItem.Content>
                                         <View style={{
                                             borderRadius: 30,
                                             backgroundColor: '#C8C7CC',
-                                            padding: PX(8),
+                                            padding: PX(4),
                                             paddingLeft: PX(20),
                                             paddingRight: PX(20),
                                         }}>
